@@ -6,27 +6,20 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>spring-cloud-function</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-cloud-function</name>
 	<description>spring cloud function</description>
+
 	<properties>
 		<java.version>21</java.version>
-		<spring-cloud.version>2023.0.1</spring-cloud.version>
 		<start-class>com.example.springcloudfunction.SpringCloudFunctionApplication</start-class>
 	</properties>
+
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-function-context</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-function-adapter-azure</artifactId>
@@ -47,31 +40,19 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
+				<version>2023.0.1</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>com.microsoft.azure</groupId>
 				<artifactId>azure-functions-maven-plugin</artifactId>
 				<version>1.22.0</version>
+
 				<configuration>
 					<appName>YOUR-AZURE-FUNCTION-APP-NAME</appName>
 					<resourceGroup>YOUR-AZURE-FUNCTION-RESOURCE-GROUP</resourceGroup>
@@ -80,13 +61,12 @@
 					<pricingTier>YOUR-AZURE-FUNCTION-PRICING-TIER</pricingTier>
 
 					<hostJson>${project.basedir}/src/main/resources/host.json</hostJson>
+					<localSettingsJson>${project.basedir}/src/main/resources/local.settings.json</localSettingsJson>
 
 					<runtime>
 						<os>linux</os>
 						<javaVersion>21</javaVersion>
 					</runtime>
-
-					<funcPort>7072</funcPort>
 
 					<appSettings>
 						<property>
@@ -103,6 +83,26 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework.boot.experimental</groupId>
+						<artifactId>spring-boot-thin-layout</artifactId>
+						<version>1.0.28.RELEASE</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
