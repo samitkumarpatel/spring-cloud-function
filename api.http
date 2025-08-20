@@ -1,0 +1,5 @@
+###
+POST http://localhost:8080/uppercase
+Content-Type: application/json
+
+["hello", "world"]
