@@ -9,6 +9,14 @@ A generic function to run in various environments such as AWS Lambda, Azure Func
 - [Microsoft Azure](https://github.com/spring-cloud/spring-cloud-function/tree/master/spring-cloud-function-samples/function-sample-azure).
 - [Google Cloud Functions](https://github.com/spring-cloud/spring-cloud-function/tree/master/spring-cloud-function-samples/function-sample-gcp-http).
 
+## aws functions
+[Click Here](https://docs.spring.io/spring-cloud-function/reference/adapters/aws-intro.html) for more details.
+
+## azure functions
+[Click Here](https://docs.spring.io/spring-cloud-function/reference/adapters/azure-intro.html) for more details.
+
+## gcp functions
+[Click Here](https://docs.spring.io/spring-cloud-function/reference/adapters/gcp-intro.html) for more details.
 
 ## GraalVM Native Support
 
